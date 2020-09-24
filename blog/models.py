@@ -5,6 +5,10 @@ from django.db import models
 # publication date V
 # body V
 # image V
+# add the blog app to the setting. V
+# create migration V
+# migrate V
+# add to the admin
 
 
 class Blog(models.Model):
@@ -13,10 +17,11 @@ class Blog(models.Model):
     body = models.TextField()
     image = models.ImageField(upload_to='images/')
 
-# add the blog app to the setting. V
+    def summary(self):
+        return self.body[:305]
 
-# create migration V
+    def pub_date_pretty(self):
+        return self.publication_date.strftime('%e %b %Y')
 
-# migrate V
-
-# add to the admin
+    def __str__(self):
+        return self.title

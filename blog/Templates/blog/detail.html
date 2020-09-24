@@ -2,7 +2,8 @@
 <html lang="en">
 {% load static %}
   <head>
-  <title>Neo's Site</title>
+    <title>{{ blog.title }}</title>
+
     <!-- Bootstrap core CSS -->
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
 
@@ -47,43 +48,25 @@
     <div class="navbar-nav ml-auto">
       <a class="nav-link" href="http://github.com">Github</a>
       <a class="nav-link active" href="{% static 'resume.png' %}">Resume</a>
-      <a class="nav-link" href="{% url 'blog' %}">Blog</a>
+      <a class="nav-link active" href="{% url 'blog' %}">Blog</a>
     </div>
   </div>
+</nav>
 </nav>
 </header>
 
 <main role="main">
-
-  <section class="jumbotron text-center">
     <div class="container">
-      <h1>Hi, I'm Neo!</h1>
-      <p class="lead text-muted">Hey, my name is Thomas A. Anderson but you can call me Neo. I love to make Django websites. It's the thrill of handling the requests that the people want.</p>
-      <p>
-        <a href="mailto:JohnDoe@webdev.com" class="btn btn-primary my-2">Email Me</a>
-      </p>
-      <img src="{% static 'pic.jpg'%}" height="300"/>
+        <h1 class="text-center pt-3"> {{ blog.title }} </h1>
+        <br/>
+        {{ blog.pub_date_pretty }}
+        <br/>
+        <img class="img-fluid" src="{{ blog.image.url }}" height="100%"/>
+        <br/>
+        <br/>
+        <p>{{ blog.body }}</p>
+        <br/>
     </div>
-  </section>
-
-  <div class="album py-5 bg-light">
-    <div class="container">
-
-      <div class="row">
-        {% for job in jobs.all %}
-        <div class="col-md-4">
-          <div class="card mb-4 shadow-sm">
-            <svg class="bd-placeholder-img card-img-top" width="100%" height="225" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: Thumbnail"><image href="{{ job.image.url }}" width="100%" height="225"/></svg>
-            <div class="card-body">
-              <p class="card-text">{{ job.summary }}</p>
-            </div>
-          </div>
-        </div>
-        {% endfor %}
-      </div>
-    </div>
-  </div>
-
 </main>
 
 <footer class="text-muted">
